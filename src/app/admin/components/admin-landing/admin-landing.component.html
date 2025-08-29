@@ -1,0 +1,34 @@
+<!-- Sélection utilisateur -->
+<div class="container" *ngIf="!userFound">
+  <button class="back-button" (click)="goBack()">
+    <span class="arrow">‹</span> Retour
+  </button>
+  <h1>Qui es-tu ?</h1>
+  <div class="buttons">
+    <button (click)="selectUser('Paul')">Paul</button>
+    <button (click)="selectUser('H')">H</button>
+    <button (click)="selectUser('Raff')">Raff</button>
+  </div>
+</div>
+
+<!-- Mot de passe -->
+<div class="container" *ngIf="userFound">
+  <button class="back-button" (click)="goBack()">
+    <span class="arrow">‹</span> Retour
+  </button>
+  <h1>Entre ton code {{userName}}</h1>
+
+ <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()" class="password-form">
+  <div class="pin-inputs">
+    <input type="text" maxlength="1" formControlName="d1" (input)="focusNext($event, 'd2')">
+    <input type="text" maxlength="1" formControlName="d2" (input)="focusNext($event, 'd3')">
+    <input type="text" maxlength="1" formControlName="d3" (input)="focusNext($event, 'd4')">
+    <input type="text" maxlength="1" formControlName="d4" (input)="focusNext($event, 'd5')">
+    <input type="text" maxlength="1" formControlName="d5" (input)="focusNext($event, 'd6')">
+    <input type="text" maxlength="1" formControlName="d6">
+  </div>
+  <button type="submit" class="validate-button">Valider</button>
+</form>
+
+<p (click)="wrongPerson()" id="admin">Je ne suis pas {{userName}}</p>
+</div>
