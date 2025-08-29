@@ -1,20 +1,20 @@
 {
-  "name": "Airbnbeer",
-  "short_name": "Airbnbeer",
+  "name": "AirBnBeer",
+  "short_name": "AirBnBeer",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1976d2",
+  "background_color": "#00782f",
+  "theme_color": "#00782f",
   "icons": [
     {
       "src": "assets/img/LOGO128.ico",
       "sizes": "128x128",
-      "type": "icon/ico"
+      "type": "image/x-icon"
     },
     {
       "src": "assets/img/LOGO256.ico",
       "sizes": "256x256",
-      "type": "icon/ico"
+      "type": "image/x-icon"
     }
   ]
 }

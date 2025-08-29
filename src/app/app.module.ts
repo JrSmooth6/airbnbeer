@@ -17,7 +17,8 @@ import { RouterModule } from '@angular/router'; // ✅ pour <router-outlet>
     RouterModule.forRoot([]),  // ✅ pour corriger l'erreur NG8001
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
-    }),
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
