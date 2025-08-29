@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {
-  constructor(private router : Router){
+  constructor(private router: Router) {
 
   }
 
-  goToAdmin(){
-    this.router.navigateByUrl('/admin');
+  goToAdmin() {
+    this.router.navigate(['/admin']);          // recommandé
   }
 
 }
