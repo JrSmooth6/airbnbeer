@@ -1,144 +1,177 @@
+/* Sélecteur global utile pour éviter les surprises de largeur */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 .container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    background-color: #00782f;
-    color: white;
-    padding: 40px 20px;
-    font-family: 'Montserrat', sans-serif;
-    position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  background-color: #00782f;
+  color: white;
+  padding: 40px 20px; /* 20px de padding horizontal -> pris en compte dans les calculs */
+  font-family: 'Montserrat', sans-serif;
+  position: relative;
+  overflow-x: hidden; /* sécurité anti overflow horizontal */
 }
 
 /* Bouton retour style iOS */
 .back-button {
-    position: absolute;
-    top: 20px;
-    left: 15px;
-    display: flex;
-    align-items: center;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 10px;
-    transition: background 0.2s ease;
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .back-button:hover {
-    background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .back-button .arrow {
-    font-size: 1.4rem;
-    margin-right: 5px;
-    line-height: 1;
+  font-size: 1.4rem;
+  margin-right: 5px;
+  line-height: 1;
 }
 
 /* Titre */
 h1 {
-    font-size: 2rem;
-    margin-top: 80px; /* espace pour le bouton retour */
-    margin-bottom: 40px;
-    text-align: center;
+  font-size: 2rem;
+  margin-top: 80px; /* espace pour le bouton retour */
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 /* Sélection utilisateur : boutons */
 .buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .buttons button {
-    padding: 15px 20px;
-    border-radius: 25px;
-    border: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background: rgba(255, 255, 255, 0.85);
-    color: #00782f;
-    font-family: 'Montserrat', sans-serif;
+  padding: 15px 20px;
+  border-radius: 25px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.85);
+  color: #00782f;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .buttons button:hover {
-    background: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
 
 /* Formulaire mot de passe */
 .password-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;           /* occupe toute la largeur disponible */
+  max-width: 480px;      /* limite confortable au centre */
+  padding: 0 0;          /* pas de padding supplémentaire ici */
 }
 
-/* Champs PIN en ligne */
+/* Champs PIN : 6 colonnes sur une seule ligne, sans débordement */
 .pin-inputs {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-    width: 100%;
-    max-width: 100%; /* sécurité pour iOS */
-    padding: 0 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 colonnes égales */
+  column-gap: 10px;
+  row-gap: 0;
+  width: 100%;            /* ne dépassera jamais le conteneur */
+  max-width: 100%;
+  margin-bottom: 30px;
+  padding: 0;             /* pas de padding pour ne pas empiéter */
 }
 
+/* Cases PIN : s'adaptent à la colonne, jamais trop larges */
 .pin-inputs input {
-    flex: 1 1 auto;
-    max-width: 13vw; /* pour que 6 cases tiennent sur un écran */
-    min-width: 40px; /* taille mini pour rester lisible */
-    aspect-ratio: 1 / 1; /* reste carré */
-    text-align: center;
-    font-size: 1.5rem;
-    border-radius: 10px;
-    border: none;
-    background: rgba(255,255,255,0.85);
-    color: #00782f;
-    font-weight: bold;
+  width: 100%;            /* prend toute la cellule */
+  min-width: 0;           /* autorise le shrink pour éviter l’overflow */
+  aspect-ratio: 1 / 1;    /* carré moderne (pris en charge iOS récents) */
+  /* Fallback de hauteur si aspect-ratio indisponible (anciens iOS) */
+  height: clamp(
+    42px,
+    calc((100vw - 40px - 50px) / 6), /* viewport - padding horizontal (40px) - 5 gaps (50px) / 6 */
+    64px
+  );
+
+  text-align: center;
+  font-size: clamp(18px, 6vw, 28px); /* évite le zoom iOS et garde lisible */
+  line-height: 1;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.85);
+  color: #00782f;
+  font-weight: bold;
+  -webkit-appearance: none;
+  appearance: none;
+  touch-action: manipulation;
 }
 
 .pin-inputs input:focus {
-    outline: 2px solid white;
+  outline: 2px solid white;
 }
 
 /* Bouton validation */
 .validate-button {
-    padding: 12px 20px;
-    font-size: 1.2rem;
-    border-radius: 25px;
-    border: none;
-    background: white;
-    color: #00782f;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.2s ease;
+  padding: 12px 20px;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  border: none;
+  background: white;
+  color: #00782f;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .validate-button:hover {
-    background: #f0f0f0;
+  background: #f0f0f0;
 }
 
 /* Lien admin */
 #admin {
-    color: white;
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 1rem;
-    margin: 10px 0;
-    font-family: 'Montserrat', sans-serif;
+  color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 10px 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #admin:hover {
-    color: #0056b3;
-    text-decoration: underline;
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Sécurité supplémentaire pour les tout petits écrans : on réduit un peu l’écart */
+@media (max-width: 360px) {
+  .pin-inputs {
+    column-gap: 8px;
+  }
 }
