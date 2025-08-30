@@ -1,4 +1,7 @@
-/ngsw-worker.js  /ngsw-worker.js
-/ngsw.json       /ngsw.json
+/ngsw-worker.js        /ngsw-worker.js
+/ngsw.json             /ngsw.json
 /manifest.webmanifest  /manifest.webmanifest
+/favicon.ico           /favicon.ico
+/assets/*              /assets/:splat
+
 /*    /index.html   200
