@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Demande {
   roommate: string;
@@ -16,6 +17,9 @@ interface Demande {
 })
 export class DashboardComponent implements OnInit {
   demandes: Demande[] = [];
+  constructor(private router : Router){
+
+  }
 
   ngOnInit() {
     // Pour test : tu peux remplir avec des données factices
@@ -37,5 +41,9 @@ export class DashboardComponent implements OnInit {
         contribution: 'Pizza 🍕'
       }
     ];
+  }
+  logout(){
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 }
