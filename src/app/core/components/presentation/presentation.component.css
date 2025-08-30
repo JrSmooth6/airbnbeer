@@ -37,7 +37,7 @@ h1 {
 /* Photo principale */
 .main-photo {
   width: 100%;
-  max-height: 300px;
+  max-height: 320px;
   object-fit: cover;
   border-radius: 15px;
   margin-bottom: 20px;
@@ -68,22 +68,32 @@ h1 {
 
 .member img {
   width: 100%;
-  max-width: 200px;
+  max-width: 220px;
   border-radius: 15px;
   margin-bottom: 10px;
+  object-fit: cover;
 }
 .member p {
   font-size: 1rem;
   color: #555;
 }
 
-/* Responsive pour petits écrans */
+/* Texte en bas */
+.footer-text {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #00782f;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Responsive pour tablettes et grands écrans */
 @media (min-width: 600px) {
   .members {
     flex-direction: row;
     justify-content: space-between;
   }
   .member img {
-    max-width: 150px;
+    max-width: 180px;
   }
 }

@@ -26,6 +26,32 @@
     <p class="empty">Pas de demande en attente 🎉</p>
   </ng-template>
 
+
+  <!-- === Réservations sous 7 jours === -->
+  <h2>Réservations sous 7 jours</h2>
+  <div *ngIf="reservations.length > 0; else noReservations">
+    <div class="demandes-list">
+      <div class="demande-card" *ngFor="let resa of reservations">
+        <div class="demande-content">
+          <div class="infos">
+            <p><span class="label">Coloc:</span> {{ resa.roommate }}</p>
+            <p><span class="label">Nom & Prénom:</span> {{ resa.nomPrenom }}</p>
+            <p><span class="label">Date:</span> {{ resa.date | date:'dd/MM/yyyy' }}</p>
+            <p><span class="label">Jours:</span> {{ resa.jours }}</p>
+          </div>
+          <div class="arrow">›</div>
+        </div>
+      </div>
+    </div>
+    <!-- Bouton voir toutes -->
+    <button class="all-reservations-button">Voir toutes les réservations</button>
+  </div>
+
+  <ng-template #noReservations>
+    <p class="empty">Aucune réservation prévue dans les 7 jours</p>
+  </ng-template>
+
+
   <!-- Bouton déconnexion -->
-  <button class="logout-button"(click)="logout()">Déconnexion</button>
+  <button class="logout-button" (click)="logout()">Déconnexion</button>
 </div>
