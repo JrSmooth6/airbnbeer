@@ -11,6 +11,7 @@
     position: relative;
 }
 
+/* Bouton retour style iOS */
 .back-button {
     position: absolute;
     top: 20px;
@@ -40,13 +41,13 @@
 
 /* Titre */
 h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-top: 80px; /* espace pour le bouton retour */
     margin-bottom: 40px;
     text-align: center;
 }
 
-/* Boutons */
+/* Sélection utilisateur : boutons */
 .buttons {
     display: flex;
     flex-direction: column;
@@ -73,68 +74,30 @@ h1 {
     transform: translateY(-2px);
     box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
-.container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    background-color: #00782f;
-    color: white;
-    padding: 40px 20px;
-    font-family: 'Montserrat', sans-serif;
-    position: relative;
-}
 
-.back-button {
-    position: absolute;
-    top: 20px;
-    left: 15px;
-    display: flex;
-    align-items: center;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.1rem;
-    font-weight: 400;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 10px;
-    transition: background 0.2s ease;
-}
-
-.back-button:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.back-button .arrow {
-    font-size: 1.4rem;
-    margin-right: 5px;
-    line-height: 1;
-}
-
-h1 {
-    font-size: 2rem;
-    margin-top: 80px;
-    margin-bottom: 40px;
-    text-align: center;
-}
-
+/* Formulaire mot de passe */
 .password-form {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/* Champs PIN en ligne */
 .pin-inputs {
     display: flex;
+    justify-content: center;
     gap: 10px;
     margin-bottom: 30px;
+    width: 100%;
+    max-width: 100%; /* sécurité pour iOS */
+    padding: 0 10px;
 }
 
 .pin-inputs input {
-    width: 50px;
-    height: 50px;
+    flex: 1 1 auto;
+    max-width: 13vw; /* pour que 6 cases tiennent sur un écran */
+    min-width: 40px; /* taille mini pour rester lisible */
+    aspect-ratio: 1 / 1; /* reste carré */
     text-align: center;
     font-size: 1.5rem;
     border-radius: 10px;
@@ -148,6 +111,7 @@ h1 {
     outline: 2px solid white;
 }
 
+/* Bouton validation */
 .validate-button {
     padding: 12px 20px;
     font-size: 1.2rem;
@@ -163,6 +127,8 @@ h1 {
 .validate-button:hover {
     background: #f0f0f0;
 }
+
+/* Lien admin */
 #admin {
     color: white;
     text-decoration: underline;
@@ -176,4 +142,3 @@ h1 {
     color: #0056b3;
     text-decoration: underline;
 }
-
