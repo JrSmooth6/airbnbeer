@@ -7,6 +7,22 @@
   <h2>Informations de la venue</h2>
 
   <form [formGroup]="formulaire" (ngSubmit)="submitForm()">
+    <!-- Nouveau champ : choix du colocataire -->
+    <div class="form-group">
+      <label for="roommate">Choisis ton coloc :</label>
+      <select id="roommate" formControlName="roommate">
+        <option value="paul">Paul</option>
+        <option value="raff">Raff</option>
+        <option value="H">H</option>
+      </select>
+    </div>
+
+    <!-- Nouveau champ : date de la venue -->
+    <div class="form-group">
+      <label for="date">Sélectionne une date :</label>
+      <input type="date" id="date" formControlName="date">
+    </div>
+
     <div class="form-group">
       <label for="jours">Nombre de jours de la venue</label>
       <input type="number" id="jours" formControlName="jours">

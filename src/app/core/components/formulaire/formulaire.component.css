@@ -48,7 +48,8 @@ h2 {
 
 /* Inputs & textarea avec fond blanc */
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
   border: none;
   border-radius: 15px;
   padding: 12px 15px;
@@ -62,7 +63,8 @@ h2 {
 
 /* Focus style pour inputs */
 .form-group input:focus,
-.form-group textarea:focus {
+.form-group textarea:focus,
+.form-group select:focus {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
 }
 

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-formulaire',
@@ -11,27 +10,27 @@ import { Router } from '@angular/router';
 export class FormulaireComponent {
   formulaire: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private location: Location) {
     this.formulaire = this.fb.group({
-      jours: [null, [Validators.required, Validators.min(1)]],
+      roommate: ['', Validators.required],
+      date: ['', Validators.required],
+      jours: ['', [Validators.required, Validators.min(1)]],
       nomPrenom: ['', Validators.required],
       telephone: ['', Validators.required],
-      contribution: ['', Validators.required]
+      contribution: ['']
     });
   }
 
-  submitForm() {
-    if (this.formulaire.invalid) {
-      alert('Veuillez remplir tous les champs correctement.');
-      return;
-    }
-
-    console.log('Formulaire soumis :', this.formulaire.value);
-    alert('Merci ! Formulaire soumis avec succès.');
-    this.formulaire.reset();
+  goBack() {
+    this.location.back();
   }
 
-  goBack() {
-    this.router.navigateByUrl("/");
+  submitForm() {
+    if (this.formulaire.valid) {
+      console.log(this.formulaire.value);
+      // Ici tu peux envoyer les données au backend ou à un service
+    } else {
+      console.log('Formulaire invalide');
+    }
   }
 }
