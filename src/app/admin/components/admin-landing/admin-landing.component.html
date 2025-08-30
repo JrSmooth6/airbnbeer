@@ -18,7 +18,7 @@
   </button>
   <h1>Entre ton code {{userName}}</h1>
 
- <form [formGroup]="passwordForm" (ngSubmit)="submitPassword()" class="password-form">
+ <form [formGroup]="passwordForm" (ngSubmit)="goToDashboard()" class="password-form">
   <div class="pin-inputs">
     <input type="text" maxlength="1" formControlName="d1" (input)="focusNext($event, 'd2')">
     <input type="text" maxlength="1" formControlName="d2" (input)="focusNext($event, 'd3')">
@@ -27,7 +27,7 @@
     <input type="text" maxlength="1" formControlName="d5" (input)="focusNext($event, 'd6')">
     <input type="text" maxlength="1" formControlName="d6">
   </div>
-  <button type="submit" class="validate-button">Valider</button>
+  <button type="submit" class="validate-button" (click)="goToDashboard()">Valider</button>
 </form>
 
 <p (click)="wrongPerson()" id="admin">Je ne suis pas {{userName}}</p>

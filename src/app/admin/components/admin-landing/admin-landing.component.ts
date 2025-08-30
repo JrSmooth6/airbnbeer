@@ -26,6 +26,9 @@ export class AdminLandingComponent {
   goBack() {
     this.router.navigate(['/']); // ou une autre route
   }
+  goToDashboard(){
+    this.router.navigate(['admin/dashboard']);
+  }
 
   selectUser(user: string) {
     localStorage.setItem("user", user);

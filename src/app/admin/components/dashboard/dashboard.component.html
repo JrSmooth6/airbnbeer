@@ -1,0 +1,28 @@
+<div class="dashboard-container">
+  <h2>Demandes en attente</h2>
+
+  <!-- Si la liste contient des demandes -->
+  <div *ngIf="demandes.length > 0; else noDemandes">
+    <div class="demandes-list">
+      <div class="demande-card" *ngFor="let demande of demandes">
+        <div class="demande-content">
+          <div class="infos">
+            <p><span class="label">Coloc:</span> {{ demande.roommate }}</p>
+            <p><span class="label">Date:</span> {{ demande.date | date:'dd/MM/yyyy' }}</p>
+            <p><span class="label">Jours:</span> {{ demande.jours }}</p>
+            <p><span class="label">Nom & Prénom:</span> {{ demande.nomPrenom }}</p>
+            <p><span class="label">Téléphone:</span> {{ demande.telephone }}</p>
+            <p><span class="label">Contribution:</span> {{ demande.contribution }}</p>
+          </div>
+          <!-- Flèche à droite -->
+          <div class="arrow">›</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Si la liste est vide -->
+  <ng-template #noDemandes>
+    <p class="empty">Pas de demande en attente 🎉</p>
+  </ng-template>
+</div>
