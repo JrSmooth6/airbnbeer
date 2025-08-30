@@ -16,9 +16,11 @@
             </div>
         </div>
         <div class="input-box button-box">
-            <button id="nextButton">Suivant</button>
+            <button id="nextButton" (click)="goToFormulaire()">Suivant</button>
         </div>
         <div class="footer">
+            <p id="admin" (click)="goToPres()">Présentation de la coloc</p>
+<br>
             <p id="admin" (click)="goToAdmin()">Je suis un des colocs</p>
             Partenaire non officiel sur le bail mais toujours présent sur les factures*<br>
             *Pour votre santé, levez le coude au moins cinq fois par jour.

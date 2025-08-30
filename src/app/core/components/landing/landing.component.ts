@@ -10,9 +10,15 @@ export class LandingComponent {
   constructor(private router: Router) {
 
   }
-
   goToAdmin() {
     this.router.navigate(['/admin']);          // recommandé
+  }
+
+  goToFormulaire(){
+    this.router.navigate(['/formulaire']);
+  }
+    goToPres(){
+    this.router.navigate(['/presentation']);
   }
 
 }

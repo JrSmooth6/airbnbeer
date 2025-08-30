@@ -1,0 +1,109 @@
+/* Corps de la page */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+  width: 100vw;
+  background-color: #00782f;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Conteneur du formulaire */
+.form-container {
+  background-color: #00853b; /* un peu plus clair que le fond */
+  border-radius: 20px;
+  padding: 30px 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Titre */
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+/* Groupes de champs */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: white;
+}
+
+/* Inputs & textarea avec fond blanc */
+.form-group input,
+.form-group textarea {
+  border: none;
+  border-radius: 15px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  outline: none;
+  font-family: 'Montserrat', sans-serif;
+  background-color: white; /* fond blanc */
+  color: #00782f; /* texte vert pour contraste */
+  transition: box-shadow 0.3s;
+}
+
+/* Focus style pour inputs */
+.form-group input:focus,
+.form-group textarea:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+/* Texte zone */
+textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Bouton de soumission */
+button[type="submit"] {
+  width: 100%;
+  padding: 14px 0;
+  border: none;
+  border-radius: 25px;
+  background-color: #4f7a5f;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+  background-color: #3f6349;
+  transform: translateY(-2px);
+}
+
+/* Bouton retour iOS */
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.back-button .arrow {
+  font-size: 1.5rem;
+}

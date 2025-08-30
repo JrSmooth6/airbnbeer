@@ -1,0 +1,32 @@
+<div class="form-container">
+  <!-- Bouton retour style iOS -->
+  <button class="back-button" (click)="goBack()">
+    <span class="arrow">‹</span> Retour
+  </button>
+
+  <h2>Informations de la venue</h2>
+
+  <form [formGroup]="formulaire" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label for="jours">Nombre de jours de la venue</label>
+      <input type="number" id="jours" formControlName="jours">
+    </div>
+
+    <div class="form-group">
+      <label for="nomPrenom">Nom & Prénom</label>
+      <input type="text" id="nomPrenom" formControlName="nomPrenom">
+    </div>
+
+    <div class="form-group">
+      <label for="telephone">Numéro de téléphone</label>
+      <input type="tel" id="telephone" formControlName="telephone">
+    </div>
+
+    <div class="form-group">
+      <label for="contribution">Ce que tu apportes à la coloc</label>
+      <textarea id="contribution" formControlName="contribution"></textarea>
+    </div>
+
+    <button type="submit">Valider</button>
+  </form>
+</div>
