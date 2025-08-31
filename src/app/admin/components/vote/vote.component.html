@@ -1,0 +1,42 @@
+<div class="vote-container">
+  <!-- Bouton retour style iOS -->
+  <button class="back-button" (click)="goBack()">
+    <span class="arrow">‹</span> Retour
+  </button>
+
+  <!-- Card de récap réservation -->
+  <div class="reservation-card">
+    <h2>{{ demande.coloc }}</h2>
+    <p><strong>Nom & Prénom:</strong> {{ demande.nomPrenom }}</p>
+    <p><strong>Date:</strong> {{ demande.date | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Jours:</strong> {{ demande.jours }}</p>
+    <p><strong>Contribution:</strong> {{ demande.contribution }}</p>
+  </div>
+
+  <!-- Votes des autres -->
+  <div class="votes-section">
+    <h3>Votes des colocs</h3>
+    <div *ngFor="let vote of getOtherVotes()" class="vote-card"
+         [ngClass]="{
+            'vote-oui': vote.value === 'oui',
+            'vote-non': vote.value === 'non',
+            'vote-attente': vote.value === ''
+         }">
+      <p *ngIf="vote.value === 'oui'">✅ {{ vote.name }} a voté OUI</p>
+      <p *ngIf="vote.value === 'non'">❌ {{ vote.name }} a voté NON</p>
+      <p *ngIf="vote.value === ''">⏳ {{ vote.name }} n'a pas encore voté</p>
+    </div>
+  </div>
+
+  <!-- Mon vote -->
+  <div class="my-vote">
+    <h3>Ton vote</h3>
+    <div class="vote-buttons">
+      <button [class.selected]="myVote === 'oui'" (click)="selectVote('oui')">Oui</button>
+      <button [class.selected]="myVote === 'non'" (click)="selectVote('non')">Non</button>
+    </div>
+    <button class="validate-button" [disabled]="myVote === ''" (click)="validateVote()">
+      Valider
+    </button>
+  </div>
+</div>

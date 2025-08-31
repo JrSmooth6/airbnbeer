@@ -4,7 +4,7 @@
   <!-- Si la liste contient des demandes -->
   <div *ngIf="demandes.length > 0; else noDemandes">
     <div class="demandes-list">
-      <div class="demande-card" *ngFor="let demande of demandes">
+      <div class="demande-card" *ngFor="let demande of demandes" (click)="goToVote()">
         <div class="demande-content">
           <div class="infos">
             <p><span class="label">Coloc:</span> {{ demande.roommate }}</p>

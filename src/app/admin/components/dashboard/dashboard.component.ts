@@ -40,4 +40,7 @@ export class DashboardComponent {
     localStorage.clear();
     this.router.navigate(['']);
   }
+  goToVote(){
+    this.router.navigate(['admin/vote'])
+  }
 }
