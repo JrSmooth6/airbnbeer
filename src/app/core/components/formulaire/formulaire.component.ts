@@ -18,8 +18,8 @@ export class FormulaireComponent implements OnInit {
   isPopup: boolean = false;
   interpolList: InterpolEntry[] = [];
   secondPopup: boolean = false;
-  prenom: string = "Gabin";
-  imageSrc: string = "assets/img/gabin.JPG"; // ton image dans /assets/images
+  prenom!: string ;
+  imageSrc!: string; // ton image dans /assets/images
   sliderValue: number = 0;
 
   constructor(
@@ -49,15 +49,31 @@ export class FormulaireComponent implements OnInit {
   goBack() {
     this.location.back();
   }
-
   submitForm() {
     if (this.formulaire.valid) {
       const tel = this.formulaire.value.telephone;
 
-      // Vérifier si le numéro est présent dans interpol.json
-      const found = this.interpolList.some(entry => entry.numero === tel);
+      // Rechercher l'entrée correspondant au numéro
+      const foundEntry = this.interpolList.find(entry => entry.numero === tel);
 
-      if (found) {
+      if (foundEntry) {
+        // Stocker le prénom pour la popup
+        this.prenom = foundEntry.nom;
+
+        // Générer un nom de fichier safe (sans accent et en minuscule)
+        const safeName = this.prenom.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        const extensions = ['jpg', 'jpeg', 'png', 'webp'];
+
+        // Chercher le fichier existant dans assets/img
+        for (let ext of extensions) {
+          const path = `assets/img/${safeName}.${ext}`;
+          const img = new Image();
+          img.src = path;
+          img.onload = () => {
+            this.imageSrc = path; // Mettre à jour imageSrc quand le fichier existe
+          };
+        }
+
         this.showPopup();
       } else {
         console.log('Numéro non listé, pas de popup');
@@ -74,8 +90,9 @@ export class FormulaireComponent implements OnInit {
     setTimeout(() => {
       this.isPopup = false;
       this.secondPopup = true;
-    }, 5000); // 4 secondes
+    }, 4000); // 4 secondes pour le premier popup
   }
+
   validateIdentity() {
     const value = this.formulaire.get('slider')?.value;
     if (value >= 100) {
@@ -85,3 +102,4 @@ export class FormulaireComponent implements OnInit {
     }
   }
 }
+
