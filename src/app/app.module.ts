@@ -6,6 +6,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router'; // ✅ pour <router-outlet>
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router'; // ✅ pour <router-outlet>
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CoreModule,
     RouterModule.forRoot([]),  // ✅ pour corriger l'erreur NG8001
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

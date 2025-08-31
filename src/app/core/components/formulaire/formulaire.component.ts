@@ -18,9 +18,19 @@ export class FormulaireComponent implements OnInit {
   isPopup: boolean = false;
   interpolList: InterpolEntry[] = [];
   secondPopup: boolean = false;
-  prenom!: string ;
+  prenom!: string;
   imageSrc!: string; // ton image dans /assets/images
   sliderValue: number = 0;
+
+  // Nouvelles propriétés pour la popup animée
+  popupMessages: string[] = [
+    'Le système a détecté une anomalie. Veuillez patienter ...',
+    'Vérification du taux d\'alcoolémie...',
+    'Vérification des listes Interpol...',
+    'Validation en cours par nos services...'
+  ];
+  currentPopupMessage: string = this.popupMessages[0];
+  private popupInterval: any;
 
   constructor(
     private fb: FormBuilder,
@@ -35,7 +45,6 @@ export class FormulaireComponent implements OnInit {
       telephone: ['', Validators.required],
       contribution: [''],
       slider: [0] // valeur initiale du slider
-
     });
   }
 
@@ -49,6 +58,7 @@ export class FormulaireComponent implements OnInit {
   goBack() {
     this.location.back();
   }
+
   submitForm() {
     if (this.formulaire.valid) {
       const tel = this.formulaire.value.telephone;
@@ -87,10 +97,25 @@ export class FormulaireComponent implements OnInit {
 
   showPopup() {
     this.isPopup = true;
+    let index = 0;
+    this.currentPopupMessage = this.popupMessages[index];
+
+    // Changer le texte toutes les secondes
+    this.popupInterval = setInterval(() => {
+      index++;
+      if (index < this.popupMessages.length) {
+        this.currentPopupMessage = this.popupMessages[index];
+      } else {
+        clearInterval(this.popupInterval);
+      }
+    }, 1500);
+
+    // Fermer le popup après 4 secondes et ouvrir la deuxième popup
     setTimeout(() => {
       this.isPopup = false;
       this.secondPopup = true;
-    }, 4000); // 4 secondes pour le premier popup
+      clearInterval(this.popupInterval); // s'assurer que l'interval s'arrête
+    }, 6000);
   }
 
   validateIdentity() {
@@ -102,4 +127,3 @@ export class FormulaireComponent implements OnInit {
     }
   }
 }
-

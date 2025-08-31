@@ -7,19 +7,24 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormulaireComponent } from './components/formulaire/formulaire.component';
 import { PresentationComponent } from './components/presentation/presentation.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     LandingComponent,
     FormulaireComponent,
-    PresentationComponent
+    PresentationComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
     CoreRoutingModule,
     ReactiveFormsModule,
     HttpClientModule
+  ],
+  exports : [
+    FooterComponent
   ]
 })
 export class CoreModule { }
