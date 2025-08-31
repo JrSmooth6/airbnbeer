@@ -6,6 +6,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormulaireComponent } from './components/formulaire/formulaire.component';
 import { PresentationComponent } from './components/presentation/presentation.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PresentationComponent } from './components/presentation/presentation.co
   imports: [
     CommonModule,
     CoreRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class CoreModule { }

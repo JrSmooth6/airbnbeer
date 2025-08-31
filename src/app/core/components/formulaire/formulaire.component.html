@@ -45,4 +45,29 @@
 
     <button type="submit">Valider</button>
   </form>
+  <!-- Popup plein écran -->
+<div *ngIf="isPopup" class="popup-overlay">
+  <div class="popup-content">
+    <div class="spinner"></div>
+    <p>Le système a détecté une anomalie<br>veuillez patienter...</p>
+  </div>
+</div>
+<div *ngIf="secondPopup" class="popup-overlay">
+  <div class="popup-content">
+    <h2 class="popup-title">ÊTES VOUS BIEN {{ prenom }} ?</h2>
+    <img [src]="imageSrc" alt="Photo de {{ prenom }}" class="popup-image" />
+
+    <div class="slider-container" [formGroup]="formulaire">
+      <input 
+        type="range" 
+        min="0" 
+        max="100" 
+        formControlName="slider"
+        (input)="validateIdentity()"
+      />
+      <div class="slider-text">Oui</div>
+    </div>
+  </div>
+</div>
+
 </div>
